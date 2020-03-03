@@ -15,6 +15,14 @@ public class Animal {
 
     private Map<String, String> extraAttributes;
 
+
+    public Animal(){}
+    public Animal(String name, String favoriteFood, String bestFriendForever) {
+        this.name = name;
+        this.favoriteFood = favoriteFood;
+        this.bestFriendForever = bestFriendForever;
+    }
+
     public String getName() {
         return name;
     }
