@@ -9,18 +9,28 @@ import java.util.Map;
  * @Date 2020/3/3
  **/
 public class Animal {
+    private int id;
     private String name;
     private String favoriteFood;
-    private String bestFriendForever;
+    private int bestFriendForever;
 
     private Map<String, String> extraAttributes;
 
 
     public Animal(){}
-    public Animal(String name, String favoriteFood, String bestFriendForever) {
+    public Animal(int id, String name, String favoriteFood, int bestFriendForever) {
+        this.id = id;
         this.name = name;
         this.favoriteFood = favoriteFood;
         this.bestFriendForever = bestFriendForever;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,11 +49,11 @@ public class Animal {
         this.favoriteFood = favoriteFood;
     }
 
-    public String getBestFriendForever() {
+    public int getBestFriendForever() {
         return bestFriendForever;
     }
 
-    public void setBestFriendForever(String bestFriendForever) {
+    public void setBestFriendForever(int bestFriendForever) {
         this.bestFriendForever = bestFriendForever;
     }
 
