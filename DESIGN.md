@@ -3,14 +3,15 @@
 ##Components
 
 ### Event Points
-1) Before lunch
-2) During lunch 
-3) After lunch
+
+* Before lunch
+* During lunch 
+* After lunch
 
 ###Actions
-1) Break up with friends before lunch
-2) Happy time, Eating food group by the brand
-3) Make friends after lunch
+* Break up with friends before lunch
+* Happy time, Eating food group by the brand
+* Make friends after lunch
 
 **Each action happens at a specific event point.**
 
@@ -21,9 +22,11 @@
 
 ### Data Structure - Friendship
 Friendship is a dynamic data structure which enables to store friends and unfriends data among each animal.
-1) Friends (1:N)      
-2) Unfriend(1:N)
+
+* Friends (1:N)      
+* Unfriend(1:N)
 
 ### Weighted for making and break up with friends for each animal
 
 We are going to build a data model to record scores for friends and unfriends with each other animals
+
