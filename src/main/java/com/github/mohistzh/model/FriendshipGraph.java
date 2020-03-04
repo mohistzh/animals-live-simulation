@@ -1,6 +1,6 @@
 package com.github.mohistzh.model;
 
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 import java.util.stream.IntStream;
 
 /**
@@ -16,7 +16,7 @@ public class FriendshipGraph {
     private int E;
 
     // adjacency table
-    private LinkedList<Integer>[] adj;
+    private LinkedHashSet<Integer>[] adj;
 
     /**
      * Create a graph with the number of vertices
@@ -24,21 +24,41 @@ public class FriendshipGraph {
      */
     public FriendshipGraph(int V) {
         this.V = V;
-        adj = new LinkedList[V];
-        IntStream.range(0, V).forEach( i -> adj[i] = new LinkedList<>());
+        adj = new LinkedHashSet[V];
+        IntStream.range(0, V).forEach( i -> adj[i] = new LinkedHashSet<>());
     }
     /**
      * Add an edge  v -> w
      * @param v
      * @param w
      */
-    public void addEdge(int v, int w) {
+    public void addFriendship(int v, int w) {
         if (v < 1 || w < 1) {
             return;
         }
         adj[v].add(w);
-        //adj[w].add(v);
+        adj[w].add(v);
         E++;
+    }
+
+    /**
+     * Break up friendship between v and w
+     * @param v
+     * @param w
+     */
+    public void removeFriendship(int v, int w) {
+        adj[v].remove(w);
+        adj[w].remove(v);
+        E--;
+    }
+
+    /**
+     * How many friends do I have?
+     * @param v
+     * @return
+     */
+    public int numberOfFriends(int v) {
+        return adj[v].size();
     }
 
     /**
@@ -46,7 +66,7 @@ public class FriendshipGraph {
      * @param v vertex
      * @return
      */
-    public LinkedList<Integer> adj(int v) {
+    public LinkedHashSet<Integer> adj(int v) {
         return adj[v];
     }
 

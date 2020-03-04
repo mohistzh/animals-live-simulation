@@ -1,6 +1,7 @@
 package com.github.mohistzh;
 
 import com.github.mohistzh.builder.AnimalMappingBuilder;
+import com.github.mohistzh.builder.DataLoader;
 import com.github.mohistzh.model.Animal;
 import com.github.mohistzh.util.RandomUtils;
 import org.junit.Before;
@@ -19,34 +20,10 @@ public class RandomPickupTester {
 
     @Before
     public void init() {
-        initialData = new ArrayList<>();
-        Animal animal1 = new Animal(1, "Rex", "Royal Canin", 3);
-        Animal animal2 = new Animal(2, "Max", "Purina ONE", 4);
-        Animal animal3 = new Animal(3, "Tom", "Royal Canin", 1);
-        Animal animal4 = new Animal(4, "Jay", "Purina ONE", 2);
-        Animal animal5 = new Animal(5, "Zoe", "9Lives", 6);
-        Animal animal6 = new Animal(6, "Ada", "Purina Friskies", 5);
-        Animal animal7 = new Animal(7, "Meg", "Purina Layena", 8);
-        Animal animal8 = new Animal(8, "Lis", "Manna Pro", 7);
-        Animal animal9 = new Animal(9, "Emi", "Purina Layena", 10);
-        Animal animal10 = new Animal(10, "Lua", "Manna Pro", 9);
-        Animal animal11 = new Animal(11, "Bob", "Manna Pro", -1);
-        Animal animal12 = new Animal(12, "Mac", "Lafeber Original", 13);
-        Animal animal13 = new Animal(13, "Alf", "Kaytee Fiesta”", 12);
-        initialData.add(animal1);
-        initialData.add(animal2);
-        initialData.add(animal3);
-        initialData.add(animal4);
-        initialData.add(animal5);
-        initialData.add(animal6);
-        initialData.add(animal7);
-        initialData.add(animal8);
-        initialData.add(animal9);
-        initialData.add(animal10);
-        initialData.add(animal11);
-        initialData.add(animal12);
-        initialData.add(animal13);
+        DataLoader dataLoader = new DataLoader();
+        initialData = dataLoader.getAnimalList();
         AnimalMappingBuilder.builder(initialData);
+
     }
     @Test
     public void testAnimalBuilder() {

@@ -31,7 +31,7 @@ public class AnimalMappingBuilder {
             bestFriendForeverMap.put(animal.getId(), animal.getBestFriendForever());
             weightedLoseFriendsMap.put(animal.getName(), RestrictionConstants.SOCIAL_WEAKER_LOST_FRIEND_RATIO);
             weightedGainFriendsMap.put(animal.getName(), RestrictionConstants.SOCIAL_WEAKER_GAIN_FRIEND_RATIO);
-            friendshipGraph.addEdge(animal.getId(), animal.getBestFriendForever());
+            friendshipGraph.addFriendship(animal.getId(), animal.getBestFriendForever());
         }
     }
     public static Map<Integer, Animal> getAnimalOfMap() {

@@ -12,7 +12,6 @@ public class AnimalDailyLifeStageImpl implements IAnimalDailyLifeStage {
 
     @Override
     public void duringLunch() {
-
         System.out.println("During lunch");
     }
 
