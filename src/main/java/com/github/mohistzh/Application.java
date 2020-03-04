@@ -3,7 +3,6 @@ package com.github.mohistzh;
 import com.github.mohistzh.repo.builder.DataLoader;
 import com.github.mohistzh.repo.model.Animal;
 import com.github.mohistzh.service.ModernAnimalLifeStyleStyle;
-
 import java.util.List;
 
 /**
@@ -13,11 +12,12 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
+        // Initialize data model first
         DataLoader dataLoader = new DataLoader();
         List<Animal> rawData = dataLoader.getAnimalList();
         ModernAnimalLifeStyleStyle modernAnimalLifeStyle = new ModernAnimalLifeStyleStyle(rawData);
 
-        int days = 100;
+        int days = 10;
         for (int i = 1; i <= days; i++) {
             System.out.println("-------------Day-"+ i +" beginning-------------");
             System.out.println("----------Hungry! Let's breakup friends before having lunch-----------");

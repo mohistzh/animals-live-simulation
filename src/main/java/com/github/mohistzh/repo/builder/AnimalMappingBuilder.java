@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * A data mapping builder
  * @Author Jonathan
  * @Date 2020/3/3
  **/
@@ -20,9 +21,13 @@ public class AnimalMappingBuilder {
     private static Map<Integer, Integer> bestFriendForeverMap;
     // unfriend relationship excluded
     private static FriendshipGraph friendshipGraph;
-
+    // pair animals social activities
     private static Map<Pair<Integer, Integer>, SocialActivity> socialActivityMap;
 
+    /**
+     * to build up useful data models
+     * @param animalList
+     */
     public static void builder(List<Animal> animalList) {
         animalOfMap = new HashMap<>();
         bestFriendForeverMap = new HashMap<>();
