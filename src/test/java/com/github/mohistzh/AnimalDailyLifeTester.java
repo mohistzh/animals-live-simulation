@@ -2,8 +2,11 @@ package com.github.mohistzh;
 
 import com.github.mohistzh.builder.DataLoader;
 import com.github.mohistzh.service.AnimalDailyLife;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.stream.IntStream;
 
 /**
  * @Author Jonathan
@@ -20,14 +23,23 @@ public class AnimalDailyLifeTester {
 
     @Test
     public void testAfterLunchMakeFriends() {
-        animalDailyLife.afterLunchMakeFriends();
+        IntStream.range(0, 10).forEach(
+                i ->
+                        animalDailyLife.afterLunchMakeFriends()
+        );
+
     }
-    @Test
-    public void testBeforeLunchBreakUpFriends() {
-        animalDailyLife.beforeLunchBreakUpFriends();
-    }
-    @Test
-    public void testLunchTime() {
-        animalDailyLife.lunchTime();
+//    @Test
+//    public void testBeforeLunchBreakUpFriends() {
+//        animalDailyLife.beforeLunchBreakUpFriends();
+//    }
+//    @Test
+//    public void testLunchTime() {
+//        animalDailyLife.lunchTime();
+//    }
+
+    @After
+    public void after() {
+        animalDailyLife.printActivities();
     }
 }

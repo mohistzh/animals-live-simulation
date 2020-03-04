@@ -7,6 +7,7 @@ import com.github.mohistzh.model.FriendshipGraph;
 import com.github.mohistzh.service.internal.AnimalDailyLifeActionImpl;
 import com.github.mohistzh.service.internal.IAnimalDailyLifeAction;
 import com.github.mohistzh.util.RandomUtils;
+import javafx.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collector;
@@ -23,10 +24,11 @@ public class AnimalDailyLife {
     private FriendshipGraph friendshipGraph;
     // best friend forever mapping
     private static Map<Integer, Integer> bestFriendForeverMap;
-    // 0 is gain, 1 is lose
-    private static Map<Integer, float[]> weightedGainAndLoseFriendMap;
+
     // animal id to animal object
     private static Map<Integer, Animal> animalOfMap;
+
+    private static Map<Pair<Integer, Integer>, SocialActivity> socialActivityMap;
     private List<Animal> animalList;
 
 
@@ -35,15 +37,13 @@ public class AnimalDailyLife {
         AnimalMappingBuilder.builder(animalList);
         friendshipGraph = AnimalMappingBuilder.getFriendshipGraph();
         bestFriendForeverMap = AnimalMappingBuilder.getBestFriendForeverMap();
-        weightedGainAndLoseFriendMap = AnimalMappingBuilder.getWeightedGainAndLoseFriendMap();
         animalOfMap = AnimalMappingBuilder.getAnimalOfMap();
+        socialActivityMap = new HashMap<>();
         //animalDailyLifeAction = new AnimalDailyLifeActionImpl();
 
     }
 
     public void beforeLunchBreakUpFriends() {
-        //animalDailyLifeAction.breakupFriends();
-        //System.out.println(friendshipGraph.toString());
         System.out.println("-------Before lunch-------");
         Random rnd = new Random();
         for (int i = 0; i < animalList.size(); i++) {
@@ -52,18 +52,24 @@ public class AnimalDailyLife {
             int friendForever = bestFriendForeverMap.get(animal.getId());
             int breakupId = RandomUtils.randomNumber(rnd, 1, animalList.size(), new int[]{animal.getId(),
                     friendForever});
+            SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), breakupId), new SocialActivity());
+            socialActivity.increseRejectedCount();
             System.out.println(animal.getName() + " tries to break up with " + animalOfMap.get(breakupId).getName());
             if (friendshipGraph.getFriends(animal.getId()).contains(breakupId)) {
                 if (makeDecision(breakupId, RestrictionConstants.BREAKEUP_FRIENDS)) {
                     friendshipGraph.removeFriendship(animal.getId(), breakupId);
+                    socialActivity.setFriends(false);
                     System.out.println("--- " + animal.getName() + " and " + animalOfMap.get(breakupId).getName() + " are not friends anymore.");
                 } else {
+                    socialActivity.setFriends(true);
                     System.out.println("--- " + animalOfMap.get(breakupId).getName() + " rejected break up with " + animal.getName());
                 }
 
             } else {
+                socialActivity.setStranger(true);
                 System.out.println("--- " + animal.getName() + " and " + animalOfMap.get(breakupId).getName() + " did't have a friendship, they should make a friend first.");
             }
+            socialActivityMap.putIfAbsent(SocialActivity.of(animal.getId(), breakupId), socialActivity);
 
         }
     }
@@ -120,20 +126,38 @@ public class AnimalDailyLife {
             int friendForever = bestFriendForeverMap.get(animal.getId());
             int friendId = RandomUtils.randomNumber(rnd, 1, animalList.size(), new int[]{animal.getId(),
                     friendForever});
+            SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), friendId), new SocialActivity());
+            socialActivity.increaseAskedCount();
             System.out.println(animal.getName() + " tries to make a friend with " + animalOfMap.get(friendId).getName());
             if (!friendshipGraph.getFriends(animal.getId()).contains(friendId)) {
                 if (makeDecision(friendId, RestrictionConstants.MAKE_FRIENDS)) {
                     friendshipGraph.addFriendship(animal.getId(), friendId);
+                    socialActivity.setFriends(true);
+                    socialActivity.increaseBecomeFriendsCount();
                     System.out.println("--- " + animal.getName() + " and " + animalOfMap.get(friendId).getName() + " become friends.");
                 } else {
+                    socialActivity.setFriends(false);
                     System.out.println("--- " + animalOfMap.get(friendId).getName() + " rejected make friends with " + animal.getName());
                 }
 
             } else {
                 System.out.println("--- " + animal.getName() + " and " + animalOfMap.get(friendId).getName() + " were friends.");
             }
+            socialActivityMap.putIfAbsent(SocialActivity.of(animal.getId(), friendId), socialActivity);
 
         }
 
+    }
+
+    public String relationshipToString() {
+
+        return null;
+
+    }
+    public void printActivities() {
+        socialActivityMap.forEach((k, v) -> {
+            System.out.println(k.getKey() + " & " + k.getValue());
+            System.out.println(v.toString());
+        });
     }
 }
