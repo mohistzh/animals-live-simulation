@@ -12,25 +12,27 @@ import java.util.Map;
  * @Date 2020/3/3
  **/
 public class AnimalMappingBuilder {
+    // animal id to animal object
     private static Map<Integer, Animal> animalOfMap;
+    // best friend forever mapping
     private static Map<Integer, Integer> bestFriendForeverMap;
-    private static Map<String, Float> weightedLoseFriendsMap;
-    private static Map<String, Float> weightedGainFriendsMap;
+    // 0 is gain, 1 is lose
+    private static Map<Integer, float[]> weightedGainAndLoseFriendMap;
     // unfriend relationship excluded
     private static FriendshipGraph friendshipGraph;
 
     public static void builder(List<Animal> animalList) {
         animalOfMap = new HashMap<>();
         bestFriendForeverMap = new HashMap<>();
-        weightedGainFriendsMap = new HashMap<>();
-        weightedLoseFriendsMap = new HashMap<>();
         friendshipGraph = new FriendshipGraph(animalList.size() + 1);
 
         for (Animal animal : animalList) {
             animalOfMap.put(animal.getId(), animal);
             bestFriendForeverMap.put(animal.getId(), animal.getBestFriendForever());
-            weightedLoseFriendsMap.put(animal.getName(), RestrictionConstants.SOCIAL_WEAKER_LOST_FRIEND_RATIO);
-            weightedGainFriendsMap.put(animal.getName(), RestrictionConstants.SOCIAL_WEAKER_GAIN_FRIEND_RATIO);
+            // by default, animal's social data is weak
+            weightedGainAndLoseFriendMap.putIfAbsent(animal.getId(),
+                    new float[]{RestrictionConstants.SOCIAL_WEAKER_GAIN_FRIEND_RATIO,
+                            RestrictionConstants.SOCIAL_WEAKER_LOST_FRIEND_RATIO});
             friendshipGraph.addFriendship(animal.getId(), animal.getBestFriendForever());
         }
     }
@@ -40,13 +42,6 @@ public class AnimalMappingBuilder {
     public static Map<Integer, Integer> getBestFriendForeverMap() {
         return bestFriendForeverMap;
     }
-    public static Map<String, Float> getWeightedLoseFriendsMap() {
-        return weightedLoseFriendsMap;
-    }
-    public static Map<String, Float> getWeightedGainFriendsMap() {
-        return weightedGainFriendsMap;
-    }
-    public static FriendshipGraph getFriendshipGraph() {
-        return friendshipGraph;
-    }
+    public static Map<Integer, float[]> getWeightedGainAndLoseFriendMap() { return weightedGainAndLoseFriendMap; }
+    public static FriendshipGraph getFriendshipGraph() { return friendshipGraph; }
 }
