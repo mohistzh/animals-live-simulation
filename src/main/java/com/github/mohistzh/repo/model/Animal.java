@@ -1,4 +1,4 @@
-package com.github.mohistzh.model;
+package com.github.mohistzh.repo.model;
 
 import java.util.Map;
 

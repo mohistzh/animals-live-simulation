@@ -1,10 +1,9 @@
 package com.github.mohistzh;
 
-import com.github.mohistzh.builder.AnimalMappingBuilder;
-import com.github.mohistzh.builder.DataLoader;
-import com.github.mohistzh.model.Animal;
-import com.github.mohistzh.model.FriendshipGraph;
-import org.junit.After;
+import com.github.mohistzh.repo.builder.AnimalMappingBuilder;
+import com.github.mohistzh.repo.builder.DataLoader;
+import com.github.mohistzh.repo.model.Animal;
+import com.github.mohistzh.repo.model.FriendshipGraph;
 import org.junit.Before;
 import org.junit.Test;
 

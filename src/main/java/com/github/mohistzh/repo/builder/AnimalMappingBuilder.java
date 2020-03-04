@@ -1,9 +1,8 @@
-package com.github.mohistzh.builder;
+package com.github.mohistzh.repo.builder;
 
-import com.github.mohistzh.config.RestrictionConstants;
-import com.github.mohistzh.model.Animal;
-import com.github.mohistzh.model.FriendshipGraph;
-import com.github.mohistzh.service.SocialActivity;
+import com.github.mohistzh.repo.model.Animal;
+import com.github.mohistzh.repo.model.FriendshipGraph;
+import com.github.mohistzh.repo.model.SocialActivity;
 import javafx.util.Pair;
 
 import java.util.HashMap;

@@ -1,6 +1,6 @@
-package com.github.mohistzh.builder;
+package com.github.mohistzh.repo.builder;
 
-import com.github.mohistzh.model.Animal;
+import com.github.mohistzh.repo.model.Animal;
 
 import java.util.ArrayList;
 import java.util.List;

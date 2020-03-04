@@ -1,4 +1,4 @@
-package com.github.mohistzh.service;
+package com.github.mohistzh.repo.model;
 
 import javafx.util.Pair;
 

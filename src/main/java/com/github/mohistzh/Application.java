@@ -1,7 +1,7 @@
 package com.github.mohistzh;
 
-import com.github.mohistzh.builder.DataLoader;
-import com.github.mohistzh.model.Animal;
+import com.github.mohistzh.repo.builder.DataLoader;
+import com.github.mohistzh.repo.model.Animal;
 import com.github.mohistzh.service.AnimalDailyLife;
 import java.util.List;
 
