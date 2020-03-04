@@ -3,6 +3,7 @@ package com.github.mohistzh.service;
 import javafx.util.Pair;
 
 /**
+ * Records animals social activities
  * @Author Jonathan
  * @Date 2020/3/4
  **/
@@ -28,6 +29,11 @@ public class SocialActivity {
     private int becomeFriendsCount;
 
     public SocialActivity(){}
+
+    /**
+     * initialize attributes by data default setting
+     * @param foreverFriend
+     */
     public SocialActivity(boolean foreverFriend) {
         if (foreverFriend) {
             this.stranger = false;

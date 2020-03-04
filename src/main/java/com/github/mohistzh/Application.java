@@ -1,7 +1,9 @@
 package com.github.mohistzh;
 
 import com.github.mohistzh.builder.DataLoader;
+import com.github.mohistzh.model.Animal;
 import com.github.mohistzh.service.AnimalDailyLife;
+import java.util.List;
 
 /**
  * @Author Jonathan
@@ -11,7 +13,17 @@ public class Application {
 
     public static void main(String[] args) {
         DataLoader dataLoader = new DataLoader();
-        AnimalDailyLife simulationService = new AnimalDailyLife(dataLoader.getAnimalList());
-        simulationService.beforeLunchBreakUpFriends();
+        List<Animal> rawData = dataLoader.getAnimalList();
+        AnimalDailyLife simulationService = new AnimalDailyLife(rawData);
+
+        int days = 10;
+        for (int i = 1; i <= days; i++) {
+            System.out.println("-------------Day-"+ i +" beginning-------------");
+            simulationService.beforeLunchBreakUpFriends();
+            simulationService.lunchTime();
+            simulationService.afterLunchMakeFriends();
+            System.out.println("-------------Day-"+ i +" completed-------------");
+        }
+        simulationService.printTable();
     }
 }

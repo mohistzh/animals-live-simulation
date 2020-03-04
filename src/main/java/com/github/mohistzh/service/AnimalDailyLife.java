@@ -35,7 +35,6 @@ public class AnimalDailyLife {
         bestFriendForeverMap = AnimalMappingBuilder.getBestFriendForeverMap();
         animalOfMap = AnimalMappingBuilder.getAnimalOfMap();
         socialActivityMap = AnimalMappingBuilder.getSocialActivityMap();
-        //animalDailyLifeAction = new AnimalDailyLifeActionImpl();
 
     }
 
@@ -43,7 +42,7 @@ public class AnimalDailyLife {
         System.out.println("-------Before lunch-------");
         for (int i = 0; i < animalList.size(); i++) {
             Animal animal = animalList.get(i);
-            // should be ignore friend forever
+            // should be ignore forever friends for number randomizing
             int friendForever = bestFriendForeverMap.get(animal.getId());
             int breakupId = RandomUtils.randomGeneration(1, animalList.size(), Arrays.asList(animal.getId(),
                     friendForever));
@@ -62,7 +61,7 @@ public class AnimalDailyLife {
 
             } else {
                 socialActivity.setStranger(true);
-                System.out.println("--- " + animal.getName() + " and " + animalOfMap.get(breakupId).getName() + " did't have a friendship, they should make a friend first.");
+                System.out.println("--- " + animal.getName() + " and " + animalOfMap.get(breakupId).getName() + " did't have a friendship, they should make friends first.");
             }
             socialActivityMap.putIfAbsent(SocialActivity.of(animal.getId(), breakupId), socialActivity);
 
@@ -70,6 +69,7 @@ public class AnimalDailyLife {
     }
 
     public void lunchTime() {
+        System.out.println("------------it's lunch time---------------");
         Map<String, List<Animal>> animalPerFood = this.animalList.stream()
                 .collect(Collectors.groupingBy(Animal::getFavoriteFood));
         for (String food : animalPerFood.keySet()) {
@@ -122,7 +122,6 @@ public class AnimalDailyLife {
                     friendForever));
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), friendId), new SocialActivity());
             socialActivity.increaseAskedCount();
-            System.out.println(friendId);
             System.out.println(animal.getName() + " tries to make a friend with " + animalOfMap.get(friendId).getName());
             if (!friendshipGraph.getFriends(animal.getId()).contains(friendId)) {
                 if (makeDecision(friendId, RestrictionConstants.MAKE_FRIENDS)) {

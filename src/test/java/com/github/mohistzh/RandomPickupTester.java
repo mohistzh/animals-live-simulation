@@ -41,7 +41,7 @@ public class RandomPickupTester {
             int friendForever = bestFriendForeverMap.getOrDefault(animal.getId(), -1);
             if (friendForever > 0) {
                 System.out.println("FriendForever: " + friendForever);
-                int random = RandomUtils.randomNumber(rnd, 1, initialData.size() + 1, new int[]{animal.getId(), friendForever});
+                int random = RandomUtils.randomGeneration(1, initialData.size() + 1, Arrays.asList(animal.getId(), friendForever));
                 if (random > Integer.MIN_VALUE) {
                     System.out.println(random);
                 } else {
