@@ -4,8 +4,6 @@ import com.github.mohistzh.builder.AnimalMappingBuilder;
 import com.github.mohistzh.config.RestrictionConstants;
 import com.github.mohistzh.model.Animal;
 import com.github.mohistzh.model.FriendshipGraph;
-import com.github.mohistzh.service.internal.AnimalDailyLifeActionImpl;
-import com.github.mohistzh.service.internal.IAnimalDailyLifeAction;
 import com.github.mohistzh.util.RandomUtils;
 import javafx.util.Pair;
 
@@ -43,13 +41,10 @@ public class AnimalDailyLife {
 
     public void beforeLunchBreakUpFriends() {
         System.out.println("-------Before lunch-------");
-        Random rnd = new Random();
         for (int i = 0; i < animalList.size(); i++) {
             Animal animal = animalList.get(i);
             // should be ignore friend forever
             int friendForever = bestFriendForeverMap.get(animal.getId());
-//            int breakupId = RandomUtils.randomNumber(rnd, 1, animalList.size(), new int[]{animal.getId(),
-//                    friendForever});
             int breakupId = RandomUtils.randomGeneration(1, animalList.size(), Arrays.asList(animal.getId(),
                     friendForever));
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), breakupId), new SocialActivity());
@@ -119,13 +114,10 @@ public class AnimalDailyLife {
 
     public void afterLunchMakeFriends() {
         System.out.println("-------After lunch-------");
-        Random rnd = new Random();
         for (int i = 0; i < animalList.size(); i++) {
             Animal animal = animalList.get(i);
             // should be ignore friend forever
             int friendForever = bestFriendForeverMap.get(animal.getId());
-//            int friendId = RandomUtils.randomNumber(rnd, 1, animalList.size(),
-//                    new int[]{animal.getId(), friendForever});
             int friendId = RandomUtils.randomGeneration(1, animalList.size(), Arrays.asList(animal.getId(),
                     friendForever));
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), friendId), new SocialActivity());
@@ -192,12 +184,5 @@ public class AnimalDailyLife {
             System.out.println();
         }
 
-    }
-
-    public void printActivities() {
-        socialActivityMap.forEach((k, v) -> {
-            System.out.println(k.getKey() + " & " + k.getValue());
-            System.out.println(v.toString());
-        });
     }
 }
