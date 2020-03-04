@@ -3,7 +3,7 @@ package com.github.mohistzh.service;
 import com.github.mohistzh.config.RestrictionConstants;
 import com.github.mohistzh.repo.model.Animal;
 import com.github.mohistzh.repo.model.SocialActivity;
-import com.github.mohistzh.service.internal.AbstractAnimalLifeStyleStyle;
+import com.github.mohistzh.service.internal.AbstractAnimalLifeStyle;
 import com.github.mohistzh.util.RandomUtils;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -11,12 +11,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * A type of animal life stype
+ * A type of animal life style
  * @Author Jonathan
  * @Date 2020/3/4
  **/
-public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
-    public ModernAnimalLifeStyleStyle(List<Animal> animalList) {
+public class ModernAnimalLifeStyle extends AbstractAnimalLifeStyle {
+    public ModernAnimalLifeStyle(List<Animal> animalList) {
         super(animalList);
     }
 

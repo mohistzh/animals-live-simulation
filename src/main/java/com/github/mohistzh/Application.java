@@ -2,7 +2,7 @@ package com.github.mohistzh;
 
 import com.github.mohistzh.repo.builder.DataLoader;
 import com.github.mohistzh.repo.model.Animal;
-import com.github.mohistzh.service.ModernAnimalLifeStyleStyle;
+import com.github.mohistzh.service.ModernAnimalLifeStyle;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ public class Application {
         // Initialize data model first
         DataLoader dataLoader = new DataLoader();
         List<Animal> rawData = dataLoader.getAnimalList();
-        ModernAnimalLifeStyleStyle modernAnimalLifeStyle = new ModernAnimalLifeStyleStyle(rawData);
+        ModernAnimalLifeStyle modernAnimalLifeStyle = new ModernAnimalLifeStyle(rawData);
 
         int days = 10;
         for (int i = 1; i <= days; i++) {

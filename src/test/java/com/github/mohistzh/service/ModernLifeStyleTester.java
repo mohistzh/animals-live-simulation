@@ -12,32 +12,32 @@ import java.util.stream.IntStream;
  * @Date 2020/3/5
  **/
 public class ModernLifeStyleTester {
-    ModernAnimalLifeStyleStyle modernAnimalLifeStyleStyle;
+    ModernAnimalLifeStyle modernAnimalLifeStyle;
 
     @Before
     public void init() {
         DataLoader dataLoader = new DataLoader();
-        modernAnimalLifeStyleStyle = new ModernAnimalLifeStyleStyle(dataLoader.getAnimalList());
+        modernAnimalLifeStyle = new ModernAnimalLifeStyle(dataLoader.getAnimalList());
     }
 
     @Test
     public void testBreakup() {
         IntStream.range(0, 100).forEach(i -> {
-            modernAnimalLifeStyleStyle.breakupFriends();
+            modernAnimalLifeStyle.breakupFriends();
         });
     }
 
     @Test
     public void testMakeFriends() {
         IntStream.range(0, 100).forEach(i -> {
-            modernAnimalLifeStyleStyle.makeFriends();
+            modernAnimalLifeStyle.makeFriends();
         });
     }
 
     @After
     public void tearDown() {
-        modernAnimalLifeStyleStyle.printAnimalsStatus();
-        modernAnimalLifeStyleStyle.checkAnimalsActivities();
+        modernAnimalLifeStyle.printAnimalsStatus();
+        modernAnimalLifeStyle.checkAnimalsActivities();
     }
 
 }

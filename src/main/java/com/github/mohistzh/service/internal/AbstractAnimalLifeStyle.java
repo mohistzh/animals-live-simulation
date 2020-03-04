@@ -14,7 +14,7 @@ import java.util.Map;
  * @Author Jonathan
  * @Date 2020/3/4
  **/
-public abstract class AbstractAnimalLifeStyleStyle implements IAnimalLifeStyleAction {
+public abstract class AbstractAnimalLifeStyle implements IAnimalLifeStyleAction {
 
     //private IAnimalLifeStyleAction animalDailyLifeAction;
     protected  FriendshipGraph friendshipGraph;
@@ -30,7 +30,7 @@ public abstract class AbstractAnimalLifeStyleStyle implements IAnimalLifeStyleAc
     //Raw data of animals
     protected  List<Animal> animalList;
 
-    public AbstractAnimalLifeStyleStyle(List<Animal> animalList) {
+    public AbstractAnimalLifeStyle(List<Animal> animalList) {
         this.animalList = animalList;
         AnimalMappingBuilder.builder(animalList);
         friendshipGraph = AnimalMappingBuilder.getFriendshipGraph();
