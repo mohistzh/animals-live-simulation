@@ -62,4 +62,9 @@ public class RandomPickupTester {
         //IntStream.range(1, 20).forEach(i -> System.out.println(RandomUtils.randomBooleanLessThan((0.90f))));
     }
 
+    @Test
+    public void testRandomIncluded() {
+        System.out.println(RandomUtils.randomGeneration(Arrays.asList(1,4,8)));
+        System.out.println(RandomUtils.randomGeneration(Arrays.asList(18)));
+    }
 }

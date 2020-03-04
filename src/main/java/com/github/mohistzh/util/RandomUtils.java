@@ -2,6 +2,7 @@ package com.github.mohistzh.util;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * An utility class for random data generation
@@ -24,6 +25,22 @@ public class RandomUtils {
         int random = rand.nextInt(range)+1;
         while (excludeNumbers.contains(random)) {
             random = rand.nextInt(range) + 1;
+        }
+        return random;
+    }
+
+    /**
+     * Generate a random number only included in the given array
+     * @param includedNumbers
+     * @return
+     */
+    public static int randomGeneration(List<Integer> includedNumbers) {
+        int random, index;
+        if (includedNumbers.size() > 1) {
+            index = ThreadLocalRandom.current().nextInt(0, includedNumbers.size());
+            random = includedNumbers.get(index);
+        } else {
+            random = includedNumbers.get(0);
         }
         return random;
     }
