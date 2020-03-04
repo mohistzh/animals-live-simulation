@@ -33,8 +33,11 @@ public class FriendshipGraph {
      * @param w
      */
     public void addEdge(int v, int w) {
+        if (v < 1 || w < 1) {
+            return;
+        }
         adj[v].add(w);
-        adj[w].add(v);
+        //adj[w].add(v);
         E++;
     }
 
@@ -47,13 +50,40 @@ public class FriendshipGraph {
         return adj[v];
     }
 
+    /**
+     * number of vertices
+     * @return
+     */
     public int getV() {
         return this.V;
     }
 
+    /**
+     * number of edges
+     * @return
+     */
     public int getE() {
         return this.E;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getV() - 1);
+        stringBuilder.append(" vertices, ");
+        stringBuilder.append(this.getE());
+        stringBuilder.append(" edges\n");
+
+        for (int i = 1; i < this.getV(); i++) {
+            stringBuilder.append(i);
+            stringBuilder.append(": ");
+            for (int w : this.adj[i]) {
+                stringBuilder.append(w);
+                stringBuilder.append(" ");
+            }
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
 
 }

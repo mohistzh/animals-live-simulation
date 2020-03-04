@@ -4,22 +4,22 @@ package com.github.mohistzh.service.internal;
  * @Author Jonathan
  * @Date 2020/3/4
  **/
-public class AnimalDailyLifeActionImpl implements IAnimalDailyLife {
+public class AnimalDailyLifeActionImpl implements IAnimalDailyLifeAction {
 
     @Override
-    public void beforeLunch() {
-        System.out.println("breakup with friends");
+    public void breakupFriends() {
+        System.out.println("Breakup friends");
     }
 
     @Override
-    public void duringLunch() {
-        System.out.println("eating food");
-
+    public void eating() {
+        System.out.println("eating");
     }
 
     @Override
-    public void afterLunch() {
-        System.out.println("make friends");
+    public void makeFriends() {
+        System.out.println("Make friends");
 
     }
+
 }

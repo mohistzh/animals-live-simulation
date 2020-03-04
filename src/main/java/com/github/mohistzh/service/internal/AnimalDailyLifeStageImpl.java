@@ -4,7 +4,7 @@ package com.github.mohistzh.service.internal;
  * @Author Jonathan
  * @Date 2020/3/4
  **/
-public class AnimalDailyLifeStageImpl implements IAnimalDailyLife {
+public class AnimalDailyLifeStageImpl implements IAnimalDailyLifeStage {
     @Override
     public void beforeLunch() {
         System.out.println("Before lunch");

@@ -1,6 +1,6 @@
 package com.github.mohistzh.service.internal;
 
-public interface IAnimalDailyLife {
+public interface IAnimalDailyLifeStage {
     void beforeLunch();
     void duringLunch();
     void afterLunch();
