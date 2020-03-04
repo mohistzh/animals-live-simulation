@@ -37,6 +37,7 @@ public class ModernLifeStyleTester {
     @After
     public void tearDown() {
         modernAnimalLifeStyleStyle.printAnimalsStatus();
+        modernAnimalLifeStyleStyle.checkAnimalsActivities();
     }
 
 }

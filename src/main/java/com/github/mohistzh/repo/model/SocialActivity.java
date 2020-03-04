@@ -85,9 +85,6 @@ public class SocialActivity {
     }
 
     public void setFriends(boolean friends) {
-        if (friends) {
-            stranger = false;
-        }
         this.friends = friends;
     }
 

@@ -17,7 +17,7 @@ public class Application {
         List<Animal> rawData = dataLoader.getAnimalList();
         ModernAnimalLifeStyleStyle modernAnimalLifeStyle = new ModernAnimalLifeStyleStyle(rawData);
 
-        int days = 10;
+        int days = 100;
         for (int i = 1; i <= days; i++) {
             System.out.println("-------------Day-"+ i +" beginning-------------");
             System.out.println("----------Hungry! Let's breakup friends before having lunch-----------");

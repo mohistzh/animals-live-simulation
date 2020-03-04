@@ -89,21 +89,20 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
             String partnerName = animalOfMap.get(partnerId).getName();
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), partnerId), new SocialActivity());
             socialActivity.increaseAskedCount();
+            socialActivity.setStranger(false);
             System.out.println("PING: "+myName + " tries to make a friend with " + partnerName);
-            if (!friendshipGraph.getFriends(animal.getId()).contains(partnerId)) {
-                if (makeDecision(partnerId, RestrictionConstants.MAKE_FRIENDS)) {
-                    friendshipGraph.addFriendship(animal.getId(), partnerId);
-                    socialActivity.setFriends(true);
-                    socialActivity.increaseBecomeFriendsCount();
-                    System.out.println("PONG: " + myName + " and " + partnerName + " become friends.");
-                } else {
-                    socialActivity.setFriends(false);
-                    System.out.println("PONG: " + partnerName + " rejected make friends with " + myName);
-                }
 
+            if (makeDecision(partnerId, RestrictionConstants.MAKE_FRIENDS)) {
+                friendshipGraph.addFriendship(animal.getId(), partnerId);
+                socialActivity.setFriends(true);
+                socialActivity.increaseBecomeFriendsCount();
+                System.out.println("PONG: " + myName + " and " + partnerName + " become friends.");
             } else {
-                System.out.println("PONG: " + myName + " and " + partnerName + " were friends.");
+                socialActivity.setFriends(false);
+                System.out.println("PONG: " + partnerName + " rejected make friends with " + myName);
             }
+
+
             socialActivityMap.putIfAbsent(SocialActivity.of(animal.getId(), partnerId), socialActivity);
         }
     }
@@ -152,7 +151,10 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
 
     @Override
     public void checkAnimalsActivities() {
-
+        socialActivityMap.forEach((k, v) -> {
+            System.out.println(k.getKey() + " & " + k.getValue());
+            System.out.println(v.toString());
+        });
     }
 
     /**
