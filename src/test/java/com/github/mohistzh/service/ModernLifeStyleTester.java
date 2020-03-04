@@ -1,6 +1,7 @@
 package com.github.mohistzh.service;
 
 import com.github.mohistzh.repo.builder.DataLoader;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,4 +26,17 @@ public class ModernLifeStyleTester {
             modernAnimalLifeStyleStyle.breakupFriends();
         });
     }
+
+    @Test
+    public void testMakeFriends() {
+        IntStream.range(0, 100).forEach(i -> {
+            modernAnimalLifeStyleStyle.makeFriends();
+        });
+    }
+
+    @After
+    public void tearDown() {
+        modernAnimalLifeStyleStyle.printAnimalsStatus();
+    }
+
 }

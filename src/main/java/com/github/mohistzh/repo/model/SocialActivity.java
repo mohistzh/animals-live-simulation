@@ -28,7 +28,14 @@ public class SocialActivity {
     // become friends times
     private int becomeFriendsCount;
 
-    public SocialActivity(){}
+    /**
+     * default value is stranger
+     */
+    public SocialActivity(){
+        this.setStranger(true);
+        this.setFriends(false);
+        this.setForeverFriend(false);
+    }
 
     /**
      * initialize attributes by data default setting
