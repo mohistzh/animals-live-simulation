@@ -1,6 +1,6 @@
 package com.github.mohistzh.service.internal;
 
-public interface IAnimalDailyLifeAction {
+public interface IAnimalLifeStyleAction {
      void breakupFriends();
      void eating();
      void makeFriends();

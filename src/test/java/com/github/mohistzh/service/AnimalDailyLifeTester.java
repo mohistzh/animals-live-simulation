@@ -1,4 +1,4 @@
-package com.github.mohistzh;
+package com.github.mohistzh.service;
 
 import com.github.mohistzh.repo.builder.DataLoader;
 import com.github.mohistzh.service.AnimalDailyLife;

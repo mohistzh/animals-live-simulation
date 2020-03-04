@@ -2,7 +2,8 @@ package com.github.mohistzh;
 
 import com.github.mohistzh.repo.builder.DataLoader;
 import com.github.mohistzh.repo.model.Animal;
-import com.github.mohistzh.service.AnimalDailyLife;
+import com.github.mohistzh.service.ModernAnimalLifeStyleStyle;
+
 import java.util.List;
 
 /**
@@ -14,16 +15,19 @@ public class Application {
     public static void main(String[] args) {
         DataLoader dataLoader = new DataLoader();
         List<Animal> rawData = dataLoader.getAnimalList();
-        AnimalDailyLife simulationService = new AnimalDailyLife(rawData);
+        ModernAnimalLifeStyleStyle modernAnimalLifeStyle = new ModernAnimalLifeStyleStyle(rawData);
 
         int days = 10;
         for (int i = 1; i <= days; i++) {
             System.out.println("-------------Day-"+ i +" beginning-------------");
-            simulationService.beforeLunchBreakUpFriends();
-            simulationService.lunchTime();
-            simulationService.afterLunchMakeFriends();
+            System.out.println("----------Hungry! Let's breakup friends before having lunch-----------");
+            modernAnimalLifeStyle.breakupFriends();
+            System.out.println("----------It's time to have lunch-----------");
+            modernAnimalLifeStyle.eating();
+            System.out.println("----------Wonderful! Let's make some friends-----------");
+            modernAnimalLifeStyle.makeFriends();
             System.out.println("-------------Day-"+ i +" completed-------------");
         }
-        simulationService.printTable();
+        modernAnimalLifeStyle.printAnimalsStatus();
     }
 }

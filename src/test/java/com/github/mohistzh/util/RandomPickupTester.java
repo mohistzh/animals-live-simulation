@@ -1,4 +1,4 @@
-package com.github.mohistzh;
+package com.github.mohistzh.util;
 
 import com.github.mohistzh.repo.builder.AnimalMappingBuilder;
 import com.github.mohistzh.repo.builder.DataLoader;

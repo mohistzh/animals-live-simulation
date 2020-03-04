@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  **/
 public class AnimalDailyLife {
 
-    //private IAnimalDailyLifeAction animalDailyLifeAction;
+    //private IAnimalLifeStyleAction animalDailyLifeAction;
     private FriendshipGraph friendshipGraph;
     // best friend forever mapping
     private static Map<Integer, Integer> bestFriendForeverMap;
