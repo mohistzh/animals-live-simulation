@@ -5,8 +5,6 @@ import com.github.mohistzh.repo.model.Animal;
 import com.github.mohistzh.repo.model.SocialActivity;
 import com.github.mohistzh.service.internal.AbstractAnimalLifeStyleStyle;
 import com.github.mohistzh.util.RandomUtils;
-
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
