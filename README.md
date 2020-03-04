@@ -2,7 +2,7 @@
 
 ## Background
 
-Please checkout the Story.pdf and Design.pdf under the static folder.
+To checkout Story.pdf on the root page.
 
 ## Installation
 
@@ -25,4 +25,6 @@ or the local solution.
 
 ## Screenshot
 
-![]()
+
+
+![example](https://raw.githubusercontent.com/mohistzh/animals-live-simulation/master/static/screenshot.png?token=AAI57HYFTQWOORVSFWF5E6S6MAKAY)
