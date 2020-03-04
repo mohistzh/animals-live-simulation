@@ -27,6 +27,7 @@ public class Application {
             System.out.println("----------Wonderful! Let's make some friends-----------");
             modernAnimalLifeStyle.makeFriends();
             System.out.println("-------------Day-"+ i +" completed-------------");
+            System.out.println();
         }
         modernAnimalLifeStyle.printAnimalsStatus();
     }
