@@ -38,7 +38,7 @@ public class AnimalDailyLife {
         friendshipGraph = AnimalMappingBuilder.getFriendshipGraph();
         bestFriendForeverMap = AnimalMappingBuilder.getBestFriendForeverMap();
         animalOfMap = AnimalMappingBuilder.getAnimalOfMap();
-        socialActivityMap = new HashMap<>();
+        socialActivityMap = AnimalMappingBuilder.getSocialActivityMap();
         //animalDailyLifeAction = new AnimalDailyLifeActionImpl();
 
     }
@@ -128,6 +128,7 @@ public class AnimalDailyLife {
                     friendForever});
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), friendId), new SocialActivity());
             socialActivity.increaseAskedCount();
+            System.out.println(friendId);
             System.out.println(animal.getName() + " tries to make a friend with " + animalOfMap.get(friendId).getName());
             if (!friendshipGraph.getFriends(animal.getId()).contains(friendId)) {
                 if (makeDecision(friendId, RestrictionConstants.MAKE_FRIENDS)) {

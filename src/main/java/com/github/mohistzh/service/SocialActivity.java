@@ -33,6 +33,7 @@ public class SocialActivity {
             this.stranger = false;
             this.friends = true;
         }
+        this.setForeverFriend(foreverFriend);
     }
     public static Pair<Integer, Integer> of(int idA, int idB) {
         return new Pair<Integer, Integer>(idA, idB);

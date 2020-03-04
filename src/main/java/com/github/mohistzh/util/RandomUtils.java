@@ -20,7 +20,7 @@ public class RandomUtils {
      * @return
      */
     public static int randomNumber(Random rnd, int start, int end, final int ... exclusion) {
-        int result = Integer.MIN_VALUE;
+        int result = 0;
         for (int i = 0; i < 3; i++) {
             final int random = rnd.nextInt(end)%(end-start+1) + start;
             boolean isExists = Arrays.stream(exclusion).anyMatch(ex -> ex == random);
