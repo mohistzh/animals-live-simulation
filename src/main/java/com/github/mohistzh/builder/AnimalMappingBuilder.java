@@ -2,7 +2,7 @@ package com.github.mohistzh.builder;
 
 import com.github.mohistzh.config.RestrictionConstants;
 import com.github.mohistzh.model.Animal;
-
+import com.github.mohistzh.model.FriendshipGraph;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +16,8 @@ public class AnimalMappingBuilder {
     private static Map<Integer, Integer> bestFriendForeverMap;
     private static Map<String, Float> weightedLoseFriendsMap;
     private static Map<String, Float> weightedGainFriendsMap;
+    // unfriend relationship excluded
+    private static FriendshipGraph friendshipGraph;
 
     public static void builder(List<Animal> animalList) {
         animalOfMap = new HashMap<>();
@@ -28,6 +30,7 @@ public class AnimalMappingBuilder {
             bestFriendForeverMap.put(animal.getId(), animal.getBestFriendForever());
             weightedLoseFriendsMap.put(animal.getName(), RestrictionConstants.SOCIAL_WEAKER_LOST_FRIEND_RATIO);
             weightedGainFriendsMap.put(animal.getName(), RestrictionConstants.SOCIAL_WEAKER_GAIN_FRIEND_RATIO);
+            friendshipGraph.addEdge(animal.getId(), animal.getBestFriendForever());
         }
     }
     public static Map<Integer, Animal> getAnimalOfMap() {
@@ -41,5 +44,8 @@ public class AnimalMappingBuilder {
     }
     public static Map<String, Float> getWeightedGainFriendsMap() {
         return weightedGainFriendsMap;
+    }
+    public static FriendshipGraph getFriendshipGraph() {
+        return friendshipGraph;
     }
 }
