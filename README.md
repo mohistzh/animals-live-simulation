@@ -2,9 +2,8 @@
 
 ## Background
 
-
-
-To checkout Story.pdf on the root page.
+![](https://raw.githubusercontent.com/mohistzh/animals-live-simulation/master/static/story%231.png)
+![](https://raw.githubusercontent.com/mohistzh/animals-live-simulation/master/static/story%232.png)
 
 ## Installation
 
@@ -28,5 +27,4 @@ or the local solution.
 ## Screenshot
 
 
-
-![example](https://raw.githubusercontent.com/mohistzh/animals-live-simulation/master/static/screenshot.png?token=AAI57HYFTQWOORVSFWF5E6S6MAKAY)
+![example](https://raw.githubusercontent.com/mohistzh/animals-live-simulation/master/static/screenshot.png)
