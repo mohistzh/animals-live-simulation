@@ -1,7 +1,6 @@
 package com.github.mohistzh.util;
 
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -20,11 +19,10 @@ public class RandomUtils {
      * @return
      */
     public static int randomGeneration(int min, int max, List<Integer> excludeNumbers) {
-        Random rand = new Random();
         int range = max - min + 1;
-        int random = rand.nextInt(range)+1;
+        int random = ThreadLocalRandom.current().nextInt(range)+1;
         while (excludeNumbers.contains(random)) {
-            random = rand.nextInt(range) + 1;
+            random = ThreadLocalRandom.current().nextInt(range) + 1;
         }
         return random;
     }
@@ -52,7 +50,6 @@ public class RandomUtils {
      * @return
      */
     public static boolean generateRandomBoolean(float percent) {
-        Random rnd = new Random();
-        return rnd.nextFloat() <= percent;
+        return ThreadLocalRandom.current().nextFloat() <= percent;
     }
 }
