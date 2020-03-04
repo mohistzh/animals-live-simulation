@@ -35,10 +35,6 @@ public class SocialActivity {
      * @param foreverFriend
      */
     public SocialActivity(boolean foreverFriend) {
-        if (foreverFriend) {
-            this.stranger = false;
-            this.friends = true;
-        }
         this.setForeverFriend(foreverFriend);
     }
     public static Pair<Integer, Integer> of(int idA, int idB) {
