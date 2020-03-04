@@ -5,12 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.mohistzh</groupId>
-  <artifactId>AnimalsLiveSimulation</artifactId>
+  <artifactId>animals-live-simulation</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>AnimalsLiveSimulation</name>
-  <!-- FIXME change it to the project's website -->
-  <url>https://github.com/mohistzh</url>
+  <name>animals-live-simulation</name>
+  <url>https://github.com/mohistzh/animals-live-simulation</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
