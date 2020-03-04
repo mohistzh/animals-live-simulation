@@ -24,7 +24,7 @@ public class DataLoader {
         Animal animal10 = new Animal(10, "Lua", "Manna Pro", 9);
         Animal animal11 = new Animal(11, "Bob", "Manna Pro", -1);
         Animal animal12 = new Animal(12, "Mac", "Lafeber Original", 13);
-        Animal animal13 = new Animal(13, "Alf", "Kaytee Fiesta”", 12);
+        Animal animal13 = new Animal(13, "Alf", "Kaytee Fiesta", 12);
         animalList.add(animal1);
         animalList.add(animal2);
         animalList.add(animal3);

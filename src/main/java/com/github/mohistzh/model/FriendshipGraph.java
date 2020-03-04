@@ -62,11 +62,11 @@ public class FriendshipGraph {
     }
 
     /**
-     * Get all adjacent vertices of input v
+     * Get all friends by input id
      * @param v vertex
      * @return
      */
-    public LinkedHashSet<Integer> adj(int v) {
+    public LinkedHashSet<Integer> getFriends(int v) {
         return adj[v];
     }
 

@@ -15,4 +15,7 @@ public class RestrictionConstants {
     public static final int SOCIAL_WEAKER_DEFINE = 2;
     public static final float SOCIAL_WEAKER_LOST_FRIEND_RATIO = 0.10f;
     public static final float SOCIAL_WEAKER_GAIN_FRIEND_RATIO = 0.90f;
+
+    public static final int MAKE_FRIENDS=1;
+    public static final int BREAKEUP_FRIENDS= 2;
 }

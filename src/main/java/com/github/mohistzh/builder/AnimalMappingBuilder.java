@@ -24,8 +24,8 @@ public class AnimalMappingBuilder {
     public static void builder(List<Animal> animalList) {
         animalOfMap = new HashMap<>();
         bestFriendForeverMap = new HashMap<>();
+        weightedGainAndLoseFriendMap = new HashMap<>();
         friendshipGraph = new FriendshipGraph(animalList.size() + 1);
-
         for (Animal animal : animalList) {
             animalOfMap.put(animal.getId(), animal);
             bestFriendForeverMap.put(animal.getId(), animal.getBestFriendForever());
