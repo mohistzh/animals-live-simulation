@@ -150,11 +150,48 @@ public class AnimalDailyLife {
 
     }
 
-    public String relationshipToString() {
+    public void printTable() {
+        System.out.println("----------------------------Animals social life check list----------------------------");
+        System.out.println("Note: ○ means stranger, × means breaks up with friend, √ means friend right now" +"\n");
+        String[][] table = new String[this.animalList.size() + 1][this.animalList.size() + 1];
+        String[] symbols = {"○", "×", "√"};
+        table[0][0]="";
+        for (int row = 0; row < table.length; row++) {
+            for (int col = 0; col < table[row].length; col++) {
+                if (row == 0 && col > 0) {
+                    table[row][col] = animalOfMap.get(col).getName();
+                } else if (row > 0 && col == 0) {
+                   table[row][col] = animalOfMap.get(row).getName();
+                }
+            }
 
-        return null;
+        }
+        //stranger, unfriends, friends(included forever friends)
+
+        socialActivityMap.forEach((k, v) -> {
+            String symbol = "";
+            if (v.isForeverFriend() || v.isFriends()) {
+                symbol = symbols[2];
+            } else if (v.isStranger()) {
+                symbol = symbols[0];
+            } else {
+                symbol = symbols[1];
+            }
+            table[k.getKey()][k.getValue()] = symbol;
+        });
+        for (String[] row : table) {
+            for (String entry : row) {
+                if (entry == null) {
+                    entry = symbols[0]; // stranger
+                }
+                System.out.format("%5s%4s", entry, "");
+                System.out.print("|");
+            }
+            System.out.println();
+        }
 
     }
+
     public void printActivities() {
         socialActivityMap.forEach((k, v) -> {
             System.out.println(k.getKey() + " & " + k.getValue());
