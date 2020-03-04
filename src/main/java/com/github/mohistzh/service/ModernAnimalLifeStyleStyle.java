@@ -7,6 +7,7 @@ import com.github.mohistzh.service.internal.AbstractAnimalLifeStyleStyle;
 import com.github.mohistzh.util.RandomUtils;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,6 +26,10 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
     public void breakupFriends() {
         for (int i = 0; i < animalList.size(); i++) {
             Animal animal = animalList.get(i);
+            if (!makeDecision(animal.getId(), RestrictionConstants.BREAKEUP_FRIENDS)) {
+                System.out.println(animal.getName() + " doesn't have a chance to breakup friends this time.");
+                continue;
+            }
             int partnerId = helpMeChoosePartner(animal.getId());
             // for record purpose
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), partnerId), new SocialActivity());
@@ -84,6 +89,10 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
     public void makeFriends() {
         for (int i = 0; i < animalList.size(); i++) {
             Animal animal = animalList.get(i);
+            if (!makeDecision(animal.getId(), RestrictionConstants.MAKE_FRIENDS)) {
+                System.out.println(animal.getName() + " doesn't have a chance to make new friend this time.");
+                continue;
+            }
             String myName = animal.getName();
             int partnerId = helpMeChoosePartner(animal.getId());
             String partnerName = animalOfMap.get(partnerId).getName();
@@ -173,21 +182,28 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
      */
     private boolean makeDecision(int animalId, int branch) {
         boolean decision = false;
-        switch (branch) {
-            case RestrictionConstants.BREAKEUP_FRIENDS:
-                if (friendshipGraph.getFriends(animalId).size() >= RestrictionConstants.SOCIAL_TALENT_DEFINE) {
-                    decision = RandomUtils.randomBooleanGreaterThan(RestrictionConstants.SOCIAL_TALENT_LOST_FRIEND_RATIO);
-                } else {
-                    decision = RandomUtils.randomBooleanLessThan(RestrictionConstants.SOCIAL_WEAKER_LOST_FRIEND_RATIO);
-                }
-            case RestrictionConstants.MAKE_FRIENDS:
-                if (friendshipGraph.getFriends(animalId).size() >= RestrictionConstants.SOCIAL_TALENT_DEFINE) {
-                    decision = RandomUtils.randomBooleanLessThan(RestrictionConstants.SOCIAL_TALENT_GAIN_FRIEND_RATIO);
-                } else {
-                    decision = RandomUtils.randomBooleanGreaterThan(RestrictionConstants.SOCIAL_WEAKER_GAIN_FRIEND_RATIO);
-                }
-            default:
-
+        StringBuffer stringBuffer = new StringBuffer();
+        LinkedHashSet<Integer> friends = friendshipGraph.getFriends(animalId);
+        int countOfFriends = friends.size();
+        stringBuffer.append("[DEBUG] ").append(animalOfMap.get(animalId).getName())
+                .append(" goes to make a decision, it has ")
+                .append(countOfFriends).append(" friends: ");
+        friends.stream().forEach(item -> {
+            stringBuffer.append(animalOfMap.get(item).getName()).append(" ");
+        });
+        System.out.println(stringBuffer.toString());
+        if (branch == RestrictionConstants.MAKE_FRIENDS) {
+            if (countOfFriends >= RestrictionConstants.SOCIAL_TALENT_DEFINE) {
+                decision = RandomUtils.generateRandomBoolean(RestrictionConstants.LOW_PERCENT_RATIO);
+            } else {
+                decision = RandomUtils.generateRandomBoolean(RestrictionConstants.HIGH_PERCENT_RATIO);
+            }
+        } else if (branch == RestrictionConstants.BREAKEUP_FRIENDS){
+            if (countOfFriends >= RestrictionConstants.SOCIAL_TALENT_DEFINE) {
+                decision = RandomUtils.generateRandomBoolean(RestrictionConstants.HIGH_PERCENT_RATIO);
+            } else {
+                decision = RandomUtils.generateRandomBoolean(RestrictionConstants.LOW_PERCENT_RATIO);
+            }
         }
         return decision;
     }

@@ -29,20 +29,13 @@ public class RandomUtils {
     }
 
     /**
-     * Generate random boolean value greater than percent of X ratio
-     * @param ratio
+     * Generate a random boolean value by given percent.
+     * Percent more higher, then easy to return true probably. vice vera.
+     * @param percent
      * @return
      */
-    public static boolean randomBooleanGreaterThan(float ratio) {
-        return Math.random() < ratio;
-    }
-
-    /**
-     * Generate random boolean value less than percent of x ratio
-     * @param ratio
-     * @return
-     */
-    public static boolean randomBooleanLessThan(float ratio) {
-        return Math.random() > ratio;
+    public static boolean generateRandomBoolean(float percent) {
+        Random rnd = new Random();
+        return rnd.nextFloat() <= percent;
     }
 }

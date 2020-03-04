@@ -1,5 +1,6 @@
 package com.github.mohistzh.util;
 
+import com.github.mohistzh.config.RestrictionConstants;
 import com.github.mohistzh.repo.builder.AnimalMappingBuilder;
 import com.github.mohistzh.repo.builder.DataLoader;
 import com.github.mohistzh.repo.model.Animal;
@@ -55,8 +56,10 @@ public class RandomPickupTester {
 
     @Test
     public void testRandomBoolean() {
-        IntStream.range(1, 20).forEach(i -> System.out.println(RandomUtils.randomBooleanGreaterThan(0.10f)));
-        IntStream.range(1, 20).forEach(i -> System.out.println(RandomUtils.randomBooleanLessThan((0.90f))));
+        //IntStream.range(1, 20).forEach(i -> System.out.println(RandomUtils.randomBooleanGreaterThan(0.10f)));
+        //IntStream.range(1, 20).forEach(i -> System.out.println(RandomUtils.randomBooleanLessThan(0.10f)));
+        IntStream.range(1, 20).forEach(i -> System.out.println(RandomUtils.generateRandomBoolean(RestrictionConstants.HIGH_PERCENT_RATIO)));
+        //IntStream.range(1, 20).forEach(i -> System.out.println(RandomUtils.randomBooleanLessThan((0.90f))));
     }
 
 }
