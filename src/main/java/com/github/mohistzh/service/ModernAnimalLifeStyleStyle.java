@@ -110,7 +110,7 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
     @Override
     public void printAnimalsStatus() {
         System.out.println("----------------------------Modern animals social life check list----------------------------");
-        System.out.println("Note: ○ means stranger, × means breaks up with friend, √ means friend right now" +"\n");
+        System.out.println("Note: ○ means stranger (included itself), × means is breaks up with friend, √ means is friend right now" +"\n");
         String[][] table = new String[this.animalList.size() + 1][this.animalList.size() + 1];
         String[] symbols = {"○", "×", "√"};
         table[0][0]="";
