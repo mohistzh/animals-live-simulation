@@ -26,32 +26,25 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
     public void breakupFriends() {
         for (int i = 0; i < animalList.size(); i++) {
             Animal animal = animalList.get(i);
-            if (!makeDecision(animal.getId(), RestrictionConstants.BREAKEUP_FRIENDS)) {
+            int partnerId = helpMeChoosePartnerToBreakup(animal.getId());
+            if (partnerId < 1 || !makeDecision(animal.getId(), RestrictionConstants.BREAKEUP_FRIENDS)) {
                 System.out.println(animal.getName() + " doesn't have a chance to breakup friends this time.");
                 continue;
             }
-            int partnerId = helpMeChoosePartner(animal.getId());
+
             // for record purpose
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), partnerId), new SocialActivity());
             socialActivity.increseRejectedCount();
             String partnerName = animalOfMap.get(partnerId).getName();
             System.out.println("PING: " + animal.getName() + " tries to break up with " + partnerName);
-            // if we are friends now
-            if (friendshipGraph.getFriends(animal.getId()).contains(partnerId)) {
-
-                if (makeDecision(partnerId, RestrictionConstants.BREAKEUP_FRIENDS)) {
-                    friendshipGraph.removeFriendship(animal.getId(), partnerId);
-                    socialActivity.setFriends(false); //TODO
-                    System.out.println("PONG: " + animal.getName() + " and " + partnerName + " are not friends anymore.");
-                } else {
-                    //socialActivity.setFriends(true);
-                    System.out.println("PONG: "  + partnerName + " rejected break up with " + animal.getName());
-                }
-
+            if (makeDecision(partnerId, RestrictionConstants.BREAKEUP_FRIENDS)) {
+                friendshipGraph.removeFriendship(animal.getId(), partnerId);
+                socialActivity.setFriends(false);
+                System.out.println("PONG: " + animal.getName() + " and " + partnerName + " are not friends anymore.");
             } else {
-                socialActivity.setStranger(true);
-                System.out.println("PONG: "  + animal.getName() + " and " + partnerName + " don't know each other, they should make friends first.");
+                System.out.println("PONG: "  + partnerName + " rejected break up with " + animal.getName());
             }
+
             socialActivityMap.putIfAbsent(SocialActivity.of(animal.getId(), partnerId), socialActivity);
         }
     }
@@ -94,7 +87,7 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
                 continue;
             }
             String myName = animal.getName();
-            int partnerId = helpMeChoosePartner(animal.getId());
+            int partnerId = helpMeChoosePartnerToSocial(animal.getId());
             String partnerName = animalOfMap.get(partnerId).getName();
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), partnerId), new SocialActivity());
             socialActivity.increaseAskedCount();
@@ -169,10 +162,26 @@ public class ModernAnimalLifeStyleStyle extends AbstractAnimalLifeStyleStyle {
      * @param myId
      * @return
      */
-    private int helpMeChoosePartner(int myId) {
-        int friendForever = bestFriendForeverMap.get(myId); // my best forever friend and myself shouldn't in the choose list
-        int partnerId = RandomUtils.randomGeneration(1, animalList.size(), Arrays.asList(myId, friendForever));
+    private int helpMeChoosePartnerToSocial(int myId) {
+        List<Integer> friends = friendshipGraph.getFriends(myId).stream().collect(Collectors.toList());
+        friends.add(myId);
+        int partnerId = RandomUtils.randomGeneration(1, animalList.size(), friends);
         return partnerId;
+    }
+
+    /**
+     * Only be able to breakup with friends.
+     * @param myId
+     * @return
+     */
+    private int helpMeChoosePartnerToBreakup(int myId) {
+        int friendId = -1;
+        int friendForever = bestFriendForeverMap.get(myId);
+        List<Integer> friends = friendshipGraph.getFriends(myId).stream().filter(item -> friendForever!=item).collect(Collectors.toList());
+        if (friends.size() > 0) {
+            friendId = RandomUtils.randomGeneration(friends);
+        }
+        return friendId;
     }
     /**
      * deciding whether breakup and make friends by settings.
