@@ -1,6 +1,7 @@
 package com.github.mohistzh.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -12,23 +13,20 @@ public class RandomUtils {
 
 
     /**
-     * Generate a random number with exclusion numbers
-     * @param rnd
-     * @param start
-     * @param end
-     * @param exclusion
+     * Generate a random number excluded by given list
+     * @param min
+     * @param max
+     * @param excludeNumbers
      * @return
      */
-    public static int randomNumber(Random rnd, int start, int end, final int ... exclusion) {
-        int result = 0;
-        for (int i = 0; i < 3; i++) {
-            final int random = rnd.nextInt(end)%(end-start+1) + start;
-            boolean isExists = Arrays.stream(exclusion).anyMatch(ex -> ex == random);
-            if (!isExists) {
-                result = random;
-            }
+    public static int randomGeneration(int min, int max, List<Integer> excludeNumbers) {
+        Random rand = new Random();
+        int range = max - min + 1;
+        int random = rand.nextInt(range)+1;
+        while (excludeNumbers.contains(random)) {
+            random = rand.nextInt(range) + 1;
         }
-        return result;
+        return random;
     }
 
     /**

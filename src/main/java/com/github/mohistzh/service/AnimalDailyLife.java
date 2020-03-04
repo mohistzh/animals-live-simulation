@@ -10,9 +10,7 @@ import com.github.mohistzh.util.RandomUtils;
 import javafx.util.Pair;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @Author Jonathan
@@ -50,8 +48,10 @@ public class AnimalDailyLife {
             Animal animal = animalList.get(i);
             // should be ignore friend forever
             int friendForever = bestFriendForeverMap.get(animal.getId());
-            int breakupId = RandomUtils.randomNumber(rnd, 1, animalList.size(), new int[]{animal.getId(),
-                    friendForever});
+//            int breakupId = RandomUtils.randomNumber(rnd, 1, animalList.size(), new int[]{animal.getId(),
+//                    friendForever});
+            int breakupId = RandomUtils.randomGeneration(1, animalList.size(), Arrays.asList(animal.getId(),
+                    friendForever));
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), breakupId), new SocialActivity());
             socialActivity.increseRejectedCount();
             System.out.println(animal.getName() + " tries to break up with " + animalOfMap.get(breakupId).getName());
@@ -124,8 +124,10 @@ public class AnimalDailyLife {
             Animal animal = animalList.get(i);
             // should be ignore friend forever
             int friendForever = bestFriendForeverMap.get(animal.getId());
-            int friendId = RandomUtils.randomNumber(rnd, 1, animalList.size(), new int[]{animal.getId(),
-                    friendForever});
+//            int friendId = RandomUtils.randomNumber(rnd, 1, animalList.size(),
+//                    new int[]{animal.getId(), friendForever});
+            int friendId = RandomUtils.randomGeneration(1, animalList.size(), Arrays.asList(animal.getId(),
+                    friendForever));
             SocialActivity socialActivity = socialActivityMap.getOrDefault(SocialActivity.of(animal.getId(), friendId), new SocialActivity());
             socialActivity.increaseAskedCount();
             System.out.println(friendId);

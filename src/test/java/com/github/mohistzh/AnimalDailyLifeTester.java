@@ -23,7 +23,10 @@ public class AnimalDailyLifeTester {
 
     @Test
     public void testAfterLunchMakeFriends() {
-        animalDailyLife.afterLunchMakeFriends();
+        IntStream.range(0, 100).forEach(i -> {
+            animalDailyLife.afterLunchMakeFriends();
+        });
+
 
     }
 //    @Test
