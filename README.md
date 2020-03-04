@@ -26,5 +26,6 @@ or the local solution.
 
 ## Screenshot
 
+The screenshot belongs to the last part of the task.
 
 ![example](https://raw.githubusercontent.com/mohistzh/animals-live-simulation/master/static/screenshot.png)
