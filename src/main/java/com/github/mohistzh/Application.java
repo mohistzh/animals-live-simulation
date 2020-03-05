@@ -12,12 +12,13 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        // Initialize data model first
+        int days = argParser(args);
+        System.out.println("----------------------------"+days+ " days of animals live simulation----------------------------");
+        System.out.println();
+        // Initialize data model
         DataLoader dataLoader = new DataLoader();
         List<Animal> rawData = dataLoader.getAnimalList();
         ModernAnimalLifeStyle modernAnimalLifeStyle = new ModernAnimalLifeStyle(rawData);
-
-        int days = 10;
         for (int i = 1; i <= days; i++) {
             System.out.println("-------------Day-"+ i +" beginning-------------");
             System.out.println("----------Hungry! Let's breakup friends before having lunch-----------");
@@ -30,5 +31,22 @@ public class Application {
             System.out.println();
         }
         modernAnimalLifeStyle.printAnimalsStatus();
+    }
+    private static int argParser(String[] args) {
+        int days = 10;
+        if (args.length > 1) {
+            System.out.println("Invalid input, the program ONLY supports one argument, use default value 10 continue to work.");
+        } else {
+            try {
+                days = Integer.parseInt(args[0]);
+                if (days > 1000 || days <= 0) {
+                    System.out.println("Invalid input, the program ONLY supports one number from 1 ~ 1000, use default value 10 continue to work.");
+                    days = 10;
+                }
+            } catch (Exception e){
+                System.out.println("Invalid input, the program ONLY supports one number from 1 ~ 1000, use default value 10 continue to work.");
+            }
+        }
+        return days;
     }
 }
