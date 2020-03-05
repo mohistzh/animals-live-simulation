@@ -22,14 +22,14 @@ public class ModernLifeStyleTester {
 
     @Test
     public void testBreakup() {
-        IntStream.range(0, 100).forEach(i -> {
+        IntStream.range(0, 5).forEach(i -> {
             modernAnimalLifeStyle.breakupFriends();
         });
     }
 
     @Test
     public void testMakeFriends() {
-        IntStream.range(0, 100).forEach(i -> {
+        IntStream.range(0, 5).forEach(i -> {
             modernAnimalLifeStyle.makeFriends();
         });
     }

@@ -14,7 +14,6 @@ public class Application {
     public static void main(String[] args) {
         int days = argParser(args);
         System.out.println("----------------------------"+days+ " days of animals live simulation----------------------------");
-        System.out.println();
         // Initialize data model
         DataLoader dataLoader = new DataLoader();
         List<Animal> rawData = dataLoader.getAnimalList();
