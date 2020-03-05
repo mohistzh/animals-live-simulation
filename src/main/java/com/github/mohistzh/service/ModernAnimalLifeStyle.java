@@ -149,10 +149,13 @@ public class ModernAnimalLifeStyle extends AbstractAnimalLifeStyle {
         }
     }
 
+    /**
+     * Print their activity data between the two of friends
+     */
     @Override
     public void checkAnimalsActivities() {
         socialActivityMap.forEach((k, v) -> {
-            System.out.println(k.getKey() + " & " + k.getValue());
+            System.out.println(animalOfMap.get(k.getKey()).getName() + " & " + animalOfMap.get(k.getValue()).getName());
             System.out.println(v.toString());
         });
     }
